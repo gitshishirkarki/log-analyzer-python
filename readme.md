@@ -1,16 +1,40 @@
-# Log Analyzer (Python)
+# Log Analyzer API (Python + FastAPI)
 
-A simple Python CLI project to learn Python basics through a real use case.
+A simple log analysis service built with Python and FastAPI.
 
-## Features
+This project started as a CLI tool to learn Python basics and was extended into a backend API for practical usage.
 
-- Parse log files
+---
+
+## 🚀 Features
+
+- Upload log files (`.log` / `.txt`)
+- Parse structured log entries
 - Count logs by level (INFO, WARN, ERROR)
 - Count logs by service
-- Filter error logs
-- Export summary as JSON
+- Filter logs using query parameters
+- Detect malformed log lines
+- Return structured JSON summary
 
-## How to Run
+---
+
+## 🧠 Tech Stack
+
+- Python
+- FastAPI
+- Pydantic
+- Uvicorn
+
+## ▶️ How to Run
+
+### 1. Install dependencies
 
 ```bash
-python main.py
+pip install -r requirements.txt
+```
+
+### 2. Start the server
+```bash
+uvicorn app.main:app --reload
+```
+

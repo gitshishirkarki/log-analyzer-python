@@ -1,4 +1,4 @@
-from models import LogEntry
+from app.models import LogEntry
 
 def parse_log_line(line: str) -> LogEntry | None:
     parts = line.strip().split(" ", 4)
@@ -17,13 +17,15 @@ def parse_log_line(line: str) -> LogEntry | None:
         message=message
     )
 
-def read_logs(file_path: str) -> list[LogEntry]:
+def parse_log_lines(lines: list[str]) -> tuple[list[LogEntry]]:
     logs: list[LogEntry] = []
+    malformed_count = 0
 
-    with open(file_path, "r", encoding="UTF-8") as file:
-        for line in file:
-            entry = parse_log_line(line)
-            if entry is not None:
-                logs.append(entry)
+    for line in lines:
+        entry = parse_log_line(line)
+        if entry is not None:
+            logs.append(entry)
+        else:
+            malformed_count += 1
     
-    return logs
+    return logs, malformed_count
